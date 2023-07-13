@@ -158,3 +158,10 @@ def heat_stress_warning():
 			return None
 
 print(heat_stress_warning())
+
+def humidity():
+    data = get_info("weather_report")
+    humidity = str(data["humidity"]["data"][0]["value"]) + "%"
+    return humidity
+
+#print(humidity())
