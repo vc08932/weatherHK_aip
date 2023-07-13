@@ -81,7 +81,10 @@ def get_info(type):
 		url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
 	elif type == "heat_stress_warning":
 		url = "https://data.weather.gov.hk/weatherAPI/opendata/hsww.php?lang=en"
+	elif type == "rainfall":
+		url = "https://data.weather.gov.hk/weatherAPI/opendata/hourlyRainfall.php?lang=en"
 
+  
 	res = requests.get(url)
 	data=json.loads(res.text)
 	return data
@@ -165,3 +168,11 @@ def humidity():
     return humidity
 
 #print(humidity())
+
+def rainfall():
+    data = get_info("rainfall")["hourlyRainfall"][24]["value"] # Get the rainfall in Hong Kong Observatory
+    if data == "0":
+        return "No rain"
+    else:
+        return data + "mm"
+print(rainfall())
