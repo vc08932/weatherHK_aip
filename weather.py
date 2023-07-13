@@ -1,6 +1,5 @@
 import requests
 import json
-#import network
 
 """ Reference
 https://data.weather.gov.hk/weatherAPI/doc/HKO_Open_Data_API_Documentation_sc.pdf
@@ -160,7 +159,7 @@ def heat_stress_warning():
 		else:
 			return None
 
-print(heat_stress_warning())
+#print(heat_stress_warning())
 
 def humidity():
     data = get_info("weather_report")
@@ -175,4 +174,7 @@ def rainfall():
         return "No rain"
     else:
         return data + "mm"
-print(rainfall())
+#print(rainfall())
+
+
+#print(rainfall(),rainfall_forecast(),humidity(),temperature(),heat_stress_warning(),weather_warning()[0],weather_info()[0])
