@@ -66,6 +66,12 @@ weather_warning_signal = {
 }
 
 
+heat_stress_warning_level = {
+  "AMBER" : "Amber Heat Stress at Work Warning",
+  "RED" : "Red Heat Stress at Work Warning",
+  "BLACK" : "Black Heat Stress at Work Warning",
+}
+
 def get_info(type):
 	if type == "warning":
 		url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warnsum&lang=en"
@@ -73,6 +79,8 @@ def get_info(type):
 		url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=en"
 	elif type == "rainfall_forecast":
 		url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
+	elif type == "heat_stress_warning":
+		url = "https://data.weather.gov.hk/weatherAPI/opendata/hsww.php?lang=en"
 
 	res = requests.get(url)
 	data=json.loads(res.text)
@@ -136,5 +144,31 @@ def temperature():
     temp = str(data[1]["value"]) + "°C" # Get the temperature in Hong Kong Observatory
     return temp
 
-print(temperature())
+#print(temperature())
 
+def heat_stress_warning():
+	#data =get_info("heat_stress_warning")
+	data = {
+ "hsww": {
+ "desc": "A reminder from the Labour Department: Amber Heat Stress at Work Warning is in effect today at 11:00 am, indicating that the heat stress in some work environments is high. Please take appropriate heat preventive measures.",
+ "warningLevel": "AMBER",
+ "actionCode": "ISSUE",
+ "effectiveTime": "2020-05-15T11:00:00+08:00",
+ "issueTime": "2020-05-15T10:55:00+08:00"
+ }
+}
+
+ 
+ 
+ 
+	
+ 
+	if bool(data) == True: # 判斷是否有值
+		data = data["hsww"]
+
+		if data["actionCode"] == "ISSUE":
+			return heat_stress_warning_level[data["warningLevel"]]
+		else:
+			return None
+
+print(heat_stress_warning())
