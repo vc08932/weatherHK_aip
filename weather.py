@@ -147,21 +147,7 @@ def temperature():
 #print(temperature())
 
 def heat_stress_warning():
-	#data =get_info("heat_stress_warning")
-	data = {
- "hsww": {
- "desc": "A reminder from the Labour Department: Amber Heat Stress at Work Warning is in effect today at 11:00 am, indicating that the heat stress in some work environments is high. Please take appropriate heat preventive measures.",
- "warningLevel": "AMBER",
- "actionCode": "ISSUE",
- "effectiveTime": "2020-05-15T11:00:00+08:00",
- "issueTime": "2020-05-15T10:55:00+08:00"
- }
-}
-
- 
- 
- 
-	
+	data =get_info("heat_stress_warning")
  
 	if bool(data) == True: # 判斷是否有值
 		data = data["hsww"]
